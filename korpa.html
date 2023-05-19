@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>korpa</title>
+	<link rel="stylesheet" type="text/css" href="stylee.css">
+</head>
+<script>
+Let allTotal = 0;
+function addToCart(element) {
+	Let mainE1 = element.closest('.single-item');
+	Let price = mainE1.querySelector('.price').innerText;
+	Let name = mainE1.querySelector('h').innerText;
+	Let quantity = mainE1.querySelector('input').value;
+	Let cartItems = document.querySelector('.cart-items');
+	
+	if(parseInt(quantity) > 0) {
+		price = price.substring(1);
+		price = parseInt(price);
+		Let total = price * parseInt(quantity);
+	
+		allTotal += total;
+		
+		cartItems.innerHTML +=  'div class="cart-single-item">
+									<h3>${name}</h3>
+									<p>$${price} x ${quantity} = $${total}</p>
+									<button>Ukloni</button>
+								</div>'; 
+		document.querySelector('.total').innerText = 'Total: ${total}';
+		
+		element.innerText = 'Dodato'; 
+		element.setAtrribute('disabled', 'true');
+	} else {
+		alert('Odaberi kolicinu');
+	}
+}
+	
+	
+	
+}
+Let mainE1 = element.closest('.cart-single-item');
+Let price = mainE1.querySelector('p span').innerText;
+Let name = mainE1.querySelector('h3').innerText;
+Let vegetables = document.querySelectorAll('.single-item');
+
+price = parseInt(price);
+
+allTotal = price;
+
+document.querySelector('.total').innerText = 'Total: $${allTotal}';
+mainE1.remove();
+
+vegetables.forEach(function(vege) {
+	Let itemName = vege.querySelector('.si-content h3').innerText;
+	
+	if(itemName === name) {
+		vege.querySelector('.actions input').value = 0;
+		vege.querySelector('.actions button').removeAttribute('disabled');
+		vege.querySelector('.actions button').InnerText = 'Dodaj' ;
+}
+
+}};
+
+}
+
+
+
+
+
+</script>
+<body>
+
+	<h1>Pijaca</h1>
+
+	<div class="container">
+		<div class="items">
+			<h2>Povrće</h2>
+
+			<div class="single-item">
+				<img src="potato.png">
+				<div class="si-content">
+					<h3>Krompir</h3>
+					<p class="price">$10</p>
+				</div>
+				<div class="actions">
+					<input type="number" name="quantity" value="0" min="0">
+					<button onclick="addToCart(this)">Dodaj</button>
+				</div>
+			</div>
+
+			<div class="single-item">
+				<img src="tomato.png">
+				<div class="si-content">
+					<h3>Paradajz</h3>
+					<p class="price">$20</p>
+				</div>
+				<div class="actions">
+					<input type="number" name="quantity" value="0" min="0">
+					<button onclick="addToCart(this)">Dodaj</button>
+				</div>
+			</div>
+
+			<div class="single-item">
+				<img src="carrot.png">
+				<div class="si-content">
+					<h3>Šargarepa</h3>
+					<p class="price">$30</p>
+				</div>
+				<div class="actions">
+					<input type="number" name="quantity" value="0" min="0">
+					<button onclick="addToCart(this)">Dodaj</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="cart">
+			<h2>Korpa</h2>
+			
+			<div class="cart-items">_</div>
+			
+			<div class="total">_</div> == $0
+			<img src="cart.png"></img>
+		</div>
+	</div>
+
+
+</body>
+</html>
